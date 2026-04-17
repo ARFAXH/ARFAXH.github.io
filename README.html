@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Si Arif — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #ffffff;
+    color: #111;
+    overflow-x: hidden;
+  }
+
+  /* NAVBAR */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 60px;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+  }
+
+  .logo {
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: -1px;
+  }
+
+  .logo span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #f5c518;
+    border-radius: 50%;
+    margin-left: 2px;
+    vertical-align: middle;
+    position: relative;
+    top: -3px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: #111;
+    font-size: 15px;
+    font-weight: 400;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 0.5; }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .contact-btn {
+    background: #111;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+
+  .contact-btn:hover { background: #333; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 60px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-greeting {
+    font-size: 18px;
+    font-weight: 400;
+    color: #444;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .wave {
+    display: inline-block;
+    font-size: 20px;
+    animation: wave 2s infinite;
+    transform-origin: 70% 70%;
+  }
+
+  @keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(20deg); }
+    40% { transform: rotate(-10deg); }
+    60% { transform: rotate(15deg); }
+    80% { transform: rotate(-5deg); }
+  }
+
+  .hero-title {
+    font-size: clamp(60px, 12vw, 140px);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -4px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-title .outline {
+    -webkit-text-stroke: 2px #111;
+    color: transparent;
+    display: block;
+  }
+
+  .arrow-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border: 2px solid #111;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    vertical-align: middle;
+    margin-left: 10px;
+    position: relative;
+    top: -10px;
+  }
+
+  .arrow-icon:hover { background: #111; color: #fff; }
+
+  .hero-location {
+    font-size: 16px;
+    color: #666;
+    margin-top: 16px;
+    margin-bottom: 40px;
+  }
+
+  /* FOTO */
+  .hero-photo {
+    position: absolute;
+    right: 100px;
+    bottom: 0;
+    height: 75vh;
+    max-height: 650px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .hero-photo img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    object-position: top;
+    filter: grayscale(5%);
+  }
+
+  /* Placeholder foto */
+  .photo-placeholder {
+    height: 100%;
+    width: 320px;
+    background: linear-gradient(180deg, #e8e8e8 0%, #d0d0d0 100%);
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #888;
+  }
+
+  .photo-placeholder .icon {
+    font-size: 48px;
+    opacity: 0.5;
+  }
+
+  .photo-placeholder p {
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.5;
+    padding: 0 20px;
+  }
+
+  /* BRAND LOGOS */
+  .brands {
+    position: absolute;
+    right: 440px;
+    bottom: 120px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    z-index: 2;
+  }
+
+  .brands span {
+    font-size: 13px;
+    color: #aaa;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+
+  /* BUTTONS */
+  .hero-buttons {
+    display: flex;
+    gap: 12px;
+    position: relative;
+    z-index: 3;
+  }
+
+  .btn-main {
+    background: #111;
+    color: #fff;
+    padding: 16px 28px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-main:hover { background: #333; }
+
+  .btn-outline {
+    background: transparent;
+    color: #111;
+    padding: 16px 28px;
+    border: 1.5px solid #111;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .btn-outline:hover { background: #111; color: #fff; }
+
+  /* ABOUT SECTION */
+  .about {
+    padding: 100px 60px;
+    background: #f9f9f9;
+  }
+
+  .about h2 {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+  }
+
+  .about p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #444;
+    max-width: 600px;
+  }
+
+  /* SKILLS */
+  .skills {
+    padding: 80px 60px;
+  }
+
+  .skills h2 {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-bottom: 40px;
+  }
+
+  .skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .skill-card {
+    border: 1.5px solid #eee;
+    border-radius: 12px;
+    padding: 24px;
+    transition: border-color 0.2s;
+  }
+
+  .skill-card:hover { border-color: #111; }
+
+  .skill-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .skill-card p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 40px 60px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #888;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 60px; }
+    .hero-photo { display: none; }
+    .brands { display: none; }
+    .about, .skills { padding: 60px 24px; }
+    footer { padding: 24px; flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">Si Arif<span></span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="contact-btn">arif@email.com</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="hero-greeting">
+    <span class="wave">👋</span>, my name is Arif Adillah and I am a
+  </p>
+
+  <h1 class="hero-title">
+    Web<span style="display:inline">designer</span>
+    <a class="arrow-icon" href="#about">↗</a>
+    <span class="outline">&amp; Developer</span>
+  </h1>
+
+  <p class="hero-location">based in Jakarta, Indonesia.</p>
+
+  <div class="brands">
+    <span>HTML</span>
+    <span>CSS</span>
+    <span>JavaScript</span>
+    <span>GitHub</span>
+  </div>
+
+  <div class="hero-buttons">
+    <button class="btn-main" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Lihat Portfolio</button>
+    <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hubungi Saya</button>
+  </div>
+
+  <!-- FOTO — ganti src="foto-kamu.jpg" dengan foto aslimu -->
+  <div class="hero-photo">
+    <div class="photo-placeholder">
+      <div class="icon">📷</div>
+      <p>Ganti dengan fotomu<br><small>Ubah kode:<br><code>src="foto-kamu.jpg"</code></small></p>
+    </div>
+    <!-- Uncomment baris di bawah ini setelah upload foto -->
+    <!-- <img src="foto-kamu.jpg" alt="Arif Adillah"> -->
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <h2>Tentang Saya</h2>
+  <p>
+    Halo! Saya <strong>Arif Adillah</strong>, seorang web designer dan developer 
+    yang berbasis di Jakarta, Indonesia. Saya bersemangat dalam menciptakan 
+    pengalaman digital yang indah dan fungsional.
+  </p>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <h2>Skills</h2>
+  <div class="skill-grid">
+    <div class="skill-card">
+      <h3>Web Design</h3>
+      <p>Mendesain tampilan website yang menarik dan modern.</p>
+    </div>
+    <div class="skill-card">
+      <h3>HTML & CSS</h3>
+      <p>Membangun struktur dan tampilan halaman web.</p>
+    </div>
+    <div class="skill-card">
+      <h3>JavaScript</h3>
+      <p>Menambahkan interaktivitas pada website.</p>
+    </div>
+    <div class="skill-card">
+      <h3>GitHub Pages</h3>
+      <p>Deploy website gratis menggunakan GitHub.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding: 100px 60px; text-align: center;">
+  <h2 style="font-size: 48px; font-weight: 900; letter-spacing: -2px; margin-bottom: 16px;">Let's work together</h2>
+  <p style="font-size: 18px; color: #666; margin-bottom: 32px;">Ada proyek? Hubungi saya!</p>
+  <a class="contact-btn" href="mailto:arif@email.com" style="font-size: 16px; padding: 16px 36px; border-radius: 8px;">arif@email.com</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo" style="font-size: 18px;">Si Arif<span style="display:inline-block;width:7px;height:7px;background:#f5c518;border-radius:50%;margin-left:2px;vertical-align:middle;position:relative;top:-2px;"></span></div>
+  <p>&copy; 2026 Arif Adillah. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
